@@ -1,0 +1,42 @@
+name: BmiCalculator
+description: Simple BmiCalculator
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  #UI
+  flutter_icons:
+  cupertino_icons:
+  #S\e
+  provider:
+  #common
+  intl:
+  hive:
+  hive_flutter:
+  flutter_staggered_animations:
+  #ads
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_driver:
+    sdk: flutter
+  test: 1.9.4
+  build_runner:
+  hive_generator:
+
+
+flutter:
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/Raleway/Raleway-Regular.ttf
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
+  uses-material-design: true
