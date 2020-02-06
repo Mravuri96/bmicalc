@@ -1,4 +1,4 @@
-package com.mahesh.BmiCalculator
+package com.example.BmiCalcSource
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

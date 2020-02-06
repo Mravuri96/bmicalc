@@ -1,6 +1,6 @@
-import 'package:BmiCalculator/models/UserData.dart';
-import 'package:BmiCalculator/providers/Calculator.dart';
-import 'package:BmiCalculator/screens/HomePage.dart';
+import 'package:BmiCalcSource/models/UserData.dart';
+import 'package:BmiCalcSource/providers/Calculator.dart';
+import 'package:BmiCalcSource/screens/HomePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';

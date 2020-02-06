@@ -1,8 +1,8 @@
-import 'package:BmiCalculator/widgets/AppBar.dart';
-import 'package:BmiCalculator/widgets/BottomAppBar.dart';
-import 'package:BmiCalculator/widgets/Gender.dart';
-import 'package:BmiCalculator/widgets/Height_Weight.dart';
-import 'package:BmiCalculator/widgets/UnitType.dart';
+import 'package:BmiCalcSource/widgets/AppBar.dart';
+import 'package:BmiCalcSource/widgets/BottomAppBar.dart';
+import 'package:BmiCalcSource/widgets/Gender.dart';
+import 'package:BmiCalcSource/widgets/Height_Weight.dart';
+import 'package:BmiCalcSource/widgets/UnitType.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
