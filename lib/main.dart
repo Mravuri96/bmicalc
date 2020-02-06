@@ -9,6 +9,11 @@ import 'package:provider/provider.dart';
 void main() async {
   await Hive.initFlutter()
       .whenComplete(
+        () => Hive.registerAdapter(
+          UserDataAdapter(),
+        ),
+      )
+      .whenComplete(
         () async => await Hive.openBox<UserData>(
           'UserData',
           crashRecovery: true,
@@ -18,11 +23,6 @@ void main() async {
         () async => Hive.openBox(
           'settings',
           crashRecovery: true,
-        ),
-      )
-      .whenComplete(
-        () => Hive.registerAdapter(
-          UserDataAdapter(),
         ),
       );
   runApp(
