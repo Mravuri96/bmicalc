@@ -12,7 +12,6 @@ void main() async {
         () async => await Hive.openBox<UserData>(
           'UserData',
           crashRecovery: true,
-          // encryptionKey: Hive.generateSecureKey(),
         ),
       )
       .whenComplete(
