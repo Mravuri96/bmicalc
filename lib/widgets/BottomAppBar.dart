@@ -21,9 +21,11 @@ class CalculateButton extends StatelessWidget {
       onTap: () => cal.isMetric
           ? Provider.of<Calculator>(
               context,
+              listen: false,
             ).calculateKgBmi()
           : Provider.of<Calculator>(
               context,
+              listen: false,
             ).calculateLbBmi(),
       child: Card(
         child: FlatButton(
