@@ -154,6 +154,11 @@ class Records extends StatelessWidget {
                                       _data.bmi.toString().substring(0, 5),
                                       style: TextStyle(
                                         color: Colors.white,
+                                        shadows: <Shadow>[
+                                          Shadow(
+                                            color: Colors.black54,blurRadius: 4
+                                          ),
+                                        ],
                                       ),
                                     ),
                                     children: <Widget>[
