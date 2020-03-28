@@ -8,7 +8,7 @@
 PRODUCT_NAME = BmiCalcSource
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.BmiCalcSource
+PRODUCT_BUNDLE_IDENTIFIER = com.mahesh.BmiCalcSource
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2020 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2020 com.mahesh. All rights reserved.
