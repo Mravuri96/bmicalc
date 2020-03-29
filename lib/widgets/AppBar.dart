@@ -1,4 +1,4 @@
-import 'package:BmiCalcSource/screens/Records.dart';
+import 'package:BmiCalc/screens/Records.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 

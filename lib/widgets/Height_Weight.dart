@@ -1,5 +1,5 @@
-import 'package:BmiCalcSource/providers/Calculator.dart';
-import 'package:BmiCalcSource/widgets/Shared/CustomScrollWheel.dart';
+import 'package:BmiCalc/providers/Calculator.dart';
+import 'package:BmiCalc/widgets/Shared/CustomScrollWheel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,4 +1,4 @@
-# BmiCalcSource
+# BmiCalc
 
 A new Flutter project.
 
