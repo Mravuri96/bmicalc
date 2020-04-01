@@ -50,9 +50,6 @@ class Records extends StatelessWidget {
                       color: Theme.of(context).cardColor,
                       child: const Text(
                         'Cancel',
-                        style: TextStyle(
-                          fontFamily: 'Raleway',
-                        ),
                       ),
                       onPressed: () {
                         Navigator.pop(context);
@@ -62,9 +59,6 @@ class Records extends StatelessWidget {
                       color: Theme.of(context).cardColor,
                       child: const Text(
                         'Confirm',
-                        style: TextStyle(
-                          fontFamily: 'Raleway',
-                        ),
                       ),
                       onPressed: () async {
                         Hive.box<UserData>('UserData').clear();
@@ -156,8 +150,8 @@ class Records extends StatelessWidget {
                                         color: Colors.white,
                                         shadows: <Shadow>[
                                           Shadow(
-                                            color: Colors.black54,blurRadius: 4
-                                          ),
+                                              color: Colors.black54,
+                                              blurRadius: 4),
                                         ],
                                       ),
                                     ),

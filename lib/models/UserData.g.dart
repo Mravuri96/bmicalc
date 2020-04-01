@@ -9,7 +9,6 @@ part of 'UserData.dart';
 class UserDataAdapter extends TypeAdapter<UserData> {
   @override
   final typeId = 0;
-
   @override
   UserData read(BinaryReader reader) {
     var numOfFields = reader.readByte();
@@ -17,11 +16,11 @@ class UserDataAdapter extends TypeAdapter<UserData> {
       for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return UserData(
-      fields[0] as double,
-      fields[1] as int,
-      fields[2] as String,
-      fields[3] as String,
-      fields[4] as DateTime,
+      bmi: fields[0] as double,
+      colorValue: fields[1] as int,
+      height: fields[2] as String,
+      weight: fields[3] as String,
+      dateRecorded: fields[4] as DateTime,
     );
   }
 

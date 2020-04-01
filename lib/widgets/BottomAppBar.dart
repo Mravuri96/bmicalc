@@ -70,7 +70,6 @@ class CalculateButton extends StatelessWidget {
                                     textScaleFactor: 2,
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontFamily: 'Montserrat-regular',
                                     ),
                                   )
                                 : Text(
@@ -81,7 +80,6 @@ class CalculateButton extends StatelessWidget {
                                     textScaleFactor: 2,
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontFamily: 'Montserrat-regular',
                                     ),
                                   ),
                           ),
@@ -102,7 +100,6 @@ class CalculateButton extends StatelessWidget {
                             '< 18.4',
                             style: TextStyle(
                               color: Colors.white,
-                              fontFamily: 'Montserrat-regular',
                             ),
                           ),
                         ),
@@ -117,7 +114,6 @@ class CalculateButton extends StatelessWidget {
                             '18.5 - 24.9',
                             style: TextStyle(
                               color: Colors.white,
-                              fontFamily: 'Montserrat-regular',
                             ),
                           ),
                         ),
@@ -132,7 +128,6 @@ class CalculateButton extends StatelessWidget {
                             '25 - 29.9',
                             style: TextStyle(
                               color: Colors.white,
-                              fontFamily: 'Montserrat-regular',
                             ),
                           ),
                         ),
@@ -147,7 +142,6 @@ class CalculateButton extends StatelessWidget {
                             '> 30',
                             style: TextStyle(
                               color: Colors.white,
-                              fontFamily: 'Montserrat-regular',
                             ),
                           ),
                         ),
@@ -183,24 +177,24 @@ class CalculateButton extends StatelessWidget {
                       // Hive.lazyBox<UserData>('UserData').length,
                       cal.isMetric
                           ? UserData(
-                              cal.calculateKgBmi(),
-                              cal.isMale
+                              bmi: cal.calculateKgBmi(),
+                              colorValue: cal.isMale
                                   ? Colors.lightBlueAccent.value
                                   : Colors.pinkAccent.value,
                               // : cal.appColor.value,
-                              '${cal.centimeters} Cm',
-                              '${cal.kg} Kg',
-                              _recordedTime,
+                              height: '${cal.centimeters} Cm',
+                              weight: '${cal.kg} Kg',
+                              dateRecorded: _recordedTime,
                             )
                           : UserData(
-                              cal.calculateLbBmi(),
-                              cal.isMale
+                              bmi: cal.calculateLbBmi(),
+                              colorValue: cal.isMale
                                   ? Colors.lightBlueAccent.value
                                   : Colors.pinkAccent.value,
                               // : cal.appColor.value,
-                              '${cal.feet} Ft ${cal.inches} In',
-                              '${cal.lb} Lb',
-                              _recordedTime,
+                              height: '${cal.feet} Ft ${cal.inches} In',
+                              weight: '${cal.lb} Lb',
+                              dateRecorded: _recordedTime,
                             ),
                     );
 

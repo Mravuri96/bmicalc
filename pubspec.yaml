@@ -32,11 +32,5 @@ dev_dependencies:
 
 
 flutter:
-  fonts:
-    - family: Raleway
-      fonts:
-        - asset: assets/fonts/Raleway/Raleway-Regular.ttf
-    - family: Montserrat
-      fonts:
-        - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
+
   uses-material-design: true

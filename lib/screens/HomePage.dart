@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
             color: Colors.white,
           ),
           bottomAppBarColor: const Color(0xcFF1D2033),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: HomePageContent(),
       );

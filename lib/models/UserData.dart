@@ -19,6 +19,11 @@ class UserData {
   @HiveField(4)
   final DateTime dateRecorded;
 
-  UserData(
-      this.bmi, this.colorValue, this.height, this.weight, this.dateRecorded,);
+  UserData({
+    this.bmi,
+    this.colorValue,
+    this.height,
+    this.weight,
+    this.dateRecorded,
+  });
 }
