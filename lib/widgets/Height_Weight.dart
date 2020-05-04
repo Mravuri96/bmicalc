@@ -1,31 +1,55 @@
-import 'package:BmiCalc/providers/Calculator.dart';
-import 'package:BmiCalc/widgets/Shared/CustomScrollWheel.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart'
+    show
+        Alignment,
+        Axis,
+        BuildContext,
+        Card,
+        Colors,
+        Column,
+        EdgeInsets,
+        Expanded,
+        Key,
+        Padding,
+        Row,
+        Stack,
+        StatelessWidget,
+        Text,
+        TextStyle,
+        Widget;
+import 'package:provider/provider.dart' show Consumer, Provider;
+
+import '../providers/calculator.dart' show Calculator;
+import 'Shared/custom_scroll_wheel.dart' show CircularScrollWheel;
 
 class HeightWeight extends StatelessWidget {
+  const HeightWeight({
+    Key key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Consumer<Calculator>(
-      builder: (_, value, __) =>
-          value.isMetric ? MetricMeasurements() : ImperialMeasurements(),
+      builder: (_, value, __) => value.isMetric
+          ? const MetricMeasurements()
+          : const ImperialMeasurements(),
     );
   }
 }
 
 class MetricMeasurements extends StatelessWidget {
+  const MetricMeasurements({
+    Key key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Row(
       children: <Expanded>[
         Expanded(
-          flex: 1,
           child: Card(
             child: Stack(
               alignment: Alignment.topCenter,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8),
                   child: Text(
                     'KG',
                     style: TextStyle(
@@ -53,8 +77,8 @@ class MetricMeasurements extends StatelessWidget {
             child: Stack(
               alignment: Alignment.topCenter,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8),
                   child: Text(
                     'CM',
                     style: TextStyle(
@@ -95,13 +119,12 @@ class ImperialMeasurements extends StatelessWidget {
     return Row(
       children: <Expanded>[
         Expanded(
-          flex: 1,
           child: Card(
             child: Stack(
               alignment: Alignment.topCenter,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8),
                   child: Text(
                     'LB',
                     style: TextStyle(
@@ -134,8 +157,8 @@ class ImperialMeasurements extends StatelessWidget {
                   child: Stack(
                     alignment: Alignment.topCenter,
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8),
                         child: Text(
                           'FEET',
                           style: TextStyle(
@@ -166,8 +189,8 @@ class ImperialMeasurements extends StatelessWidget {
                   child: Stack(
                     alignment: Alignment.topCenter,
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8),
                         child: Text(
                           'INCHES',
                           style: TextStyle(

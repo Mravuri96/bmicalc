@@ -1,6 +1,23 @@
-import 'package:BmiCalc/providers/Calculator.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart'
+    show
+        Axis,
+        BuildContext,
+        Colors,
+        FixedExtentScrollController,
+        FixedExtentScrollPhysics,
+        Key,
+        ListWheelChildBuilderDelegate,
+        ListWheelScrollView,
+        RotatedBox,
+        State,
+        StatefulWidget,
+        Text,
+        TextStyle,
+        Widget,
+        required;
+import 'package:provider/provider.dart' show Provider;
+
+import '../../providers/calculator.dart' show Calculator;
 
 class CircularScrollWheel extends StatefulWidget {
   const CircularScrollWheel({
@@ -13,7 +30,7 @@ class CircularScrollWheel extends StatefulWidget {
   }) : super(key: key);
 
   final Axis direction;
-  final num minValue, maxValue, initialValue;
+  final double minValue, maxValue, initialValue;
 
   @override
   _CircularScrollWheelState createState() => _CircularScrollWheelState();
@@ -22,14 +39,14 @@ class CircularScrollWheel extends StatefulWidget {
 }
 
 class _CircularScrollWheelState extends State<CircularScrollWheel> {
-  num _currentPosition;
+  double _currentPosition;
   FixedExtentScrollController _fixedExtentScrollController;
 
   @override
   void initState() {
     _currentPosition = widget.initialValue;
     _fixedExtentScrollController = FixedExtentScrollController(
-      initialItem: _currentPosition,
+      initialItem: _currentPosition.toInt(),
     );
     super.initState();
   }
@@ -44,10 +61,9 @@ class _CircularScrollWheelState extends State<CircularScrollWheel> {
         overAndUnderCenterOpacity: .75,
         physics: const FixedExtentScrollPhysics(),
         controller: _fixedExtentScrollController,
-        clipToSize: true,
         perspective: 0.0099,
         onSelectedItemChanged: (value) {
-          _currentPosition = value;
+          _currentPosition = value.toDouble();
           widget.onValChanged(_currentPosition + widget.minValue);
         },
         childDelegate: ListWheelChildBuilderDelegate(
@@ -64,7 +80,7 @@ class _CircularScrollWheelState extends State<CircularScrollWheel> {
               ),
             ),
           ),
-          childCount: widget.maxValue + 1 - widget.minValue,
+          childCount: (widget.maxValue + 1 - widget.minValue).toInt(),
         ),
       ),
     );

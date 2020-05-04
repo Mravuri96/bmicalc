@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'UserData.dart';
+part of 'user_data.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
@@ -9,6 +9,7 @@ part of 'UserData.dart';
 class UserDataAdapter extends TypeAdapter<UserData> {
   @override
   final typeId = 0;
+
   @override
   UserData read(BinaryReader reader) {
     var numOfFields = reader.readByte();

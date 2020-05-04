@@ -18,6 +18,9 @@ dependencies:
   intl:
   hive:
   hive_flutter:
+    git:
+      url: git://github.com/Mravuri96/hive.git #Enables macos Support
+      path: hive_flutter
   flutter_staggered_animations:
   #ads
 
@@ -30,7 +33,9 @@ dev_dependencies:
   build_runner:
   hive_generator:
 
+dependency_overrides:
+  dartx:
+  path:
 
 flutter:
-
   uses-material-design: true

@@ -1,6 +1,25 @@
-import 'package:BmiCalc/screens/Records.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter/material.dart'
+    show
+        AppBar,
+        BorderRadius,
+        BuildContext,
+        Color,
+        Colors,
+        EdgeInsets,
+        Icon,
+        IconButton,
+        Key,
+        MaterialPageRoute,
+        Navigator,
+        Padding,
+        RoundedRectangleBorder,
+        StatelessWidget,
+        Text,
+        TextStyle,
+        Widget;
+import 'package:flutter_icons/flutter_icons.dart' show MaterialCommunityIcons;
+
+import '../screens/records.dart' show Records;
 
 class CustomSliverAppBar extends StatelessWidget {
   const CustomSliverAppBar({
@@ -9,17 +28,17 @@ class CustomSliverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
+    return Padding(
       padding: const EdgeInsets.only(
         left: 4,
         right: 4,
         bottom: 4,
       ),
-      sliver: SliverAppBar(
+      child: AppBar(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
         ),
-        backgroundColor: const Color(0xcFF1D2033),
+        backgroundColor: const Color(0xFF1D2033),
         title: const Text(
           'BMI CALCULATOR',
           style: TextStyle(
@@ -29,14 +48,14 @@ class CustomSliverAppBar extends StatelessWidget {
         centerTitle: true,
         actions: <Widget>[
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               MaterialCommunityIcons.view_list,
               color: Colors.white,
             ),
-            onPressed: () async => await Navigator.push(
+            onPressed: () async => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Records(),
+                builder: (context) => const Records(),
                 maintainState: true,
                 fullscreenDialog: true,
               ),

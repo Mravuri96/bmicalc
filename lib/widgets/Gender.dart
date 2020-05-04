@@ -1,9 +1,33 @@
-import 'package:BmiCalc/providers/Calculator.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart'
+    show
+        BorderRadius,
+        BuildContext,
+        Card,
+        Color,
+        Colors,
+        Column,
+        EdgeInsets,
+        Expanded,
+        Icon,
+        Key,
+        MainAxisAlignment,
+        Padding,
+        RaisedButton,
+        RoundedRectangleBorder,
+        Row,
+        StatelessWidget,
+        Text,
+        TextStyle,
+        Widget;
+import 'package:flutter_icons/flutter_icons.dart' show FontAwesome5Solid;
+import 'package:provider/provider.dart' show Provider;
+
+import '../providers/calculator.dart' show Calculator;
 
 class GenderRow extends StatelessWidget {
+  const GenderRow({
+    Key key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final _settings = Provider.of<Calculator>(context);
@@ -13,9 +37,9 @@ class GenderRow extends StatelessWidget {
           child: Card(
             child: RaisedButton(
               splashColor: Colors.lightBlueAccent,
-              color: Color(0xcFF1D2033),
+              color: const Color(0xFF1D2033),
               onPressed: () {
-                _settings.updateIsMale(true);
+                _settings.updateIsMale(x: true);
                 // _settings.updateAppColor(
                 //   Colors.lightBlueAccent,
                 // );
@@ -24,7 +48,7 @@ class GenderRow extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(32.0),
+                padding: const EdgeInsets.all(32),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
@@ -51,15 +75,15 @@ class GenderRow extends StatelessWidget {
           child: Card(
             child: RaisedButton(
               splashColor: Colors.pinkAccent,
-              color: Color(0xcFF1D2033),
+              color: const Color(0xFF1D2033),
               onPressed: () {
-                _settings.updateIsMale(false);
+                _settings.updateIsMale(x: false);
               },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(32.0),
+                padding: const EdgeInsets.all(32),
                 child: Column(
                   children: <Widget>[
                     Icon(

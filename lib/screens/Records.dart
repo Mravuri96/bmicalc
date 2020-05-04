@@ -1,10 +1,51 @@
-import 'package:BmiCalc/models/UserData.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:hive/hive.dart';
+import 'package:flutter/material.dart'
+    show
+        AlertDialog,
+        Align,
+        Alignment,
+        AppBar,
+        BouncingScrollPhysics,
+        BuildContext,
+        Card,
+        Center,
+        Color,
+        Colors,
+        Container,
+        Dismissible,
+        EdgeInsets,
+        ExpansionTile,
+        Icon,
+        IconButton,
+        Icons,
+        Key,
+        ListTile,
+        ListView,
+        Navigator,
+        Padding,
+        RaisedButton,
+        Scaffold,
+        Shadow,
+        StatelessWidget,
+        Text,
+        TextStyle,
+        Theme,
+        ValueKey,
+        ValueListenableBuilder,
+        Widget,
+        showDialog;
+import 'package:flutter_icons/flutter_icons.dart'
+    show FontAwesome5Solid, MaterialCommunityIcons;
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart'
+    show
+        AnimationConfiguration,
+        AnimationLimiter,
+        FadeInAnimation,
+        ScaleAnimation;
+import 'package:hive/hive.dart' show Box, Hive;
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' show DateFormat;
+
+import '../models/user_data.dart' show UserData;
 
 class Records extends StatelessWidget {
   const Records({Key key}) : super(key: key);
@@ -12,7 +53,7 @@ class Records extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xcFF0A0C21),
+      backgroundColor: const Color(0xFF0A0C21),
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -23,7 +64,7 @@ class Records extends StatelessWidget {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.clear_all,
               color: Colors.white,
             ),
@@ -32,7 +73,7 @@ class Records extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  backgroundColor: const Color(0xcFF0A0c21),
+                  backgroundColor: const Color(0xFF0A0c21),
                   title: const Text(
                     'Warning',
                     style: TextStyle(
@@ -48,25 +89,25 @@ class Records extends StatelessWidget {
                   actions: <Widget>[
                     RaisedButton(
                       color: Theme.of(context).cardColor,
-                      child: const Text(
-                        'Cancel',
-                      ),
                       onPressed: () {
                         Navigator.pop(context);
                       },
+                      child: const Text(
+                        'Cancel',
+                      ),
                     ),
                     RaisedButton(
                       color: Theme.of(context).cardColor,
-                      child: const Text(
-                        'Confirm',
-                      ),
                       onPressed: () async {
-                        Hive.box<UserData>('UserData').clear();
+                        await Hive.box<UserData>('userdata').clear();
                         // await _bannerAd?.dispose();
                         // _bannerAd = null;
                         Navigator.pop(context);
                         Navigator.pop(context);
                       },
+                      child: const Text(
+                        'Confirm',
+                      ),
                     ),
                   ],
                 ),
@@ -76,14 +117,14 @@ class Records extends StatelessWidget {
         ],
       ),
       body: ValueListenableBuilder(
-        valueListenable: Hive.box<UserData>('UserData').listenable(),
+        valueListenable: Hive.box<UserData>('userdata').listenable(),
         builder: (BuildContext context, Box<UserData> value, _) {
           return value.isEmpty
               ? Container(
-                  color: const Color(0xcFF0A0C21),
-                  child: Center(
-                    child: const Text(
-                      'It\'s empty in here . . . .',
+                  color: const Color(0xFF0A0C21),
+                  child: const Center(
+                    child: Text(
+                      "It's empty in here . . . .",
                       style: TextStyle(
                         color: Colors.white,
                       ),
@@ -91,15 +132,15 @@ class Records extends StatelessWidget {
                   ),
                 )
               : Container(
-                  color: const Color(0xcFF0A0C21),
+                  color: const Color(0xFF0A0C21),
                   child: AnimationLimiter(
                     child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: value.length,
                       itemBuilder: (context, index) {
-                        final UserData _data =
-                            Hive.box<UserData>('UserData').getAt(index);
+                        final _data =
+                            Hive.box<UserData>('userdata').getAt(index);
 
                         return AnimationConfiguration.staggeredList(
                           position: index,
@@ -109,34 +150,34 @@ class Records extends StatelessWidget {
                               child: Dismissible(
                                 background: Container(
                                   color: Colors.redAccent,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(8),
                                     child: Align(
+                                      alignment: Alignment.centerLeft,
                                       child: Icon(
                                         Icons.delete_forever,
                                         color: Colors.white,
                                       ),
-                                      alignment: Alignment.centerLeft,
                                     ),
                                   ),
                                 ),
                                 secondaryBackground: Container(
                                   color: Colors.redAccent,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(8),
                                     child: Align(
+                                      alignment: Alignment.centerRight,
                                       child: Icon(
                                         Icons.delete_forever,
                                         color: Colors.white,
                                       ),
-                                      alignment: Alignment.centerRight,
                                     ),
                                   ),
                                 ),
                                 key: ValueKey(_data.dateRecorded),
                                 onDismissed: (direction) {
                                   // snapshot.data;
-                                  Hive.box<UserData>('UserData')
+                                  Hive.box<UserData>('userdata')
                                       .deleteAt(index);
                                 },
                                 child: Card(
@@ -146,7 +187,7 @@ class Records extends StatelessWidget {
                                   child: ExpansionTile(
                                     title: Text(
                                       _data.bmi.toString().substring(0, 5),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         shadows: <Shadow>[
                                           Shadow(
@@ -171,7 +212,7 @@ class Records extends StatelessWidget {
                                             : 'Female'),
                                       ),
                                       ListTile(
-                                        leading: Icon(
+                                        leading: const Icon(
                                           MaterialCommunityIcons
                                               .human_male_height_variant,
                                           color: Colors.white,
@@ -180,7 +221,7 @@ class Records extends StatelessWidget {
                                         trailing: Text(_data.height),
                                       ),
                                       ListTile(
-                                        leading: Icon(
+                                        leading: const Icon(
                                           MaterialCommunityIcons.scale_bathroom,
                                           color: Colors.white,
                                         ),
@@ -188,7 +229,7 @@ class Records extends StatelessWidget {
                                         trailing: Text(_data.weight),
                                       ),
                                       ListTile(
-                                        leading: Icon(
+                                        leading: const Icon(
                                           MaterialCommunityIcons.timer,
                                           color: Colors.white,
                                         ),

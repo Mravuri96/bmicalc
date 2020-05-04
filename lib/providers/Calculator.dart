@@ -1,24 +1,24 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart' show ChangeNotifier;
 
-class Calculator with ChangeNotifier {
-  static num _heightFT = 5,
+class Calculator extends ChangeNotifier {
+  double _heightFT = 5,
       _heightIN = 7,
       _heightCM = 180,
       _weightLB = 170,
       _weightKG = 70;
 
-  static bool _isMale = true, _isMetric = true;
-  static List<bool> _unitMeasurement = <bool>[true, false];
+  bool _isMale = true, _isMetric = true;
+  List<bool> _unitMeasurement = <bool>[true, false];
 
-  num get feet => _heightFT;
+  double get feet => _heightFT;
 
-  num get inches => _heightIN;
+  double get inches => _heightIN;
 
-  num get centimeters => _heightCM;
+  double get centimeters => _heightCM;
 
-  num get kg => _weightKG;
+  double get kg => _weightKG;
 
-  num get lb => _weightLB;
+  double get lb => _weightLB;
 
   bool get isMale => _isMale;
 
@@ -26,53 +26,53 @@ class Calculator with ChangeNotifier {
 
   List<bool> get units => _unitMeasurement;
 
-  updateFeet(num x) {
+  void updateFeet(double x) {
     _heightFT = x;
     notifyListeners();
   }
 
-  updateInches(num x) {
+  void updateInches(double x) {
     _heightIN = x;
     notifyListeners();
   }
 
-  updateCentimeters(num x) {
+  void updateCentimeters(double x) {
     _heightCM = x;
     notifyListeners();
   }
 
-  updateKg(num x) {
+  void updateKg(double x) {
     _weightKG = x;
     notifyListeners();
   }
 
-  updateLB(num x) {
+  void updateLB(double x) {
     _weightLB = x;
     notifyListeners();
   }
 
-  updateIsMale(bool x) {
+  void updateIsMale({bool x}) {
     _isMale = x;
     notifyListeners();
   }
 
-  updateIsMetric(bool x) {
+  void updateIsMetric({bool x}) {
     _isMetric = x;
     notifyListeners();
   }
 
-  updateUnitMeasuremensts(List<bool> x) {
+  void updateUnitMeasuremensts(List<bool> x) {
     _unitMeasurement = x;
     notifyListeners();
   }
 
-  double cmToMeters(int cm) => cm * .01;
+  double cmToMeters(double cm) => cm * .01;
 
   double calculateKgBmi() =>
       _weightKG / (cmToMeters(_heightCM) * cmToMeters(_heightCM));
 
   double calculateLbBmi() {
-    final int _inches = (_heightFT * 12) + _heightIN;
+    final _inches = (_heightFT * 12) + _heightIN;
     return (_weightLB / (_inches * _inches)) * 703;
   }
 }

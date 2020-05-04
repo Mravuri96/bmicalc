@@ -1,12 +1,27 @@
-import 'package:BmiCalc/providers/Calculator.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart'
+    show
+        BuildContext,
+        Card,
+        Colors,
+        Icon,
+        Key,
+        ListTile,
+        StatelessWidget,
+        Text,
+        TextStyle,
+        ToggleButtons,
+        Widget;
+import 'package:flutter_icons/flutter_icons.dart' show MaterialCommunityIcons;
+import 'package:provider/provider.dart' show Provider;
+
+import '../providers/calculator.dart' show Calculator;
 
 class UnitTypeSelector extends StatelessWidget {
+  const UnitTypeSelector({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return const Card(
       child: ListTile(
         leading: Icon(
           MaterialCommunityIcons.scale_bathroom,
@@ -37,9 +52,9 @@ class WeightSelector extends StatelessWidget {
           false,
         ]);
         val.units[index] = !val.units[index];
-        index == 0 ? val.updateIsMetric(true) : val.updateIsMetric(false);
+        index == 0 ? val.updateIsMetric(x: true) : val.updateIsMetric(x: false);
       },
-      children: <Widget>[
+      children: const <Widget>[
         Icon(
           MaterialCommunityIcons.weight_kilogram,
         ),
