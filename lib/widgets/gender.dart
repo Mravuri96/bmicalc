@@ -20,7 +20,7 @@ import 'package:flutter/material.dart'
         TextStyle,
         Widget;
 import 'package:flutter_icons/flutter_icons.dart' show FontAwesome5Solid;
-import 'package:provider/provider.dart' show Provider;
+import 'package:provider/provider.dart';
 
 import '../providers/calculator.dart' show Calculator;
 
@@ -30,7 +30,7 @@ class GenderRow extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _settings = Provider.of<Calculator>(context);
+    final _settings = context.watch<Calculator>();
     return Row(
       children: <Widget>[
         Expanded(
@@ -40,9 +40,6 @@ class GenderRow extends StatelessWidget {
               color: const Color(0xFF1D2033),
               onPressed: () {
                 _settings.updateIsMale(x: true);
-                // _settings.updateAppColor(
-                //   Colors.lightBlueAccent,
-                // );
               },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4),

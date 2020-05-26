@@ -12,7 +12,7 @@ import 'package:flutter/material.dart'
         ToggleButtons,
         Widget;
 import 'package:flutter_icons/flutter_icons.dart' show MaterialCommunityIcons;
-import 'package:provider/provider.dart' show Provider;
+import 'package:provider/provider.dart';
 
 import '../providers/calculator.dart' show Calculator;
 
@@ -42,7 +42,8 @@ class WeightSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final val = Provider.of<Calculator>(context);
+    final val = context.watch<Calculator>();
+
     return ToggleButtons(
       isSelected: val.units,
       selectedColor: val.isMale ? Colors.lightBlueAccent : Colors.pinkAccent,

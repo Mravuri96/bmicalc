@@ -16,7 +16,7 @@ import 'package:flutter/material.dart'
         Text,
         TextStyle,
         Widget;
-import 'package:provider/provider.dart' show Consumer, Provider;
+import 'package:provider/provider.dart';
 
 import '../providers/calculator.dart' show Calculator;
 import 'Shared/custom_scroll_wheel.dart' show CircularScrollWheel;
@@ -58,16 +58,16 @@ class MetricMeasurements extends StatelessWidget {
                   ),
                 ),
                 CircularScrollWheel(
-                    direction: Axis.vertical,
-                    onValChanged: (val) =>
-                        Provider.of<Calculator>(context, listen: false)
-                            .updateKg(
-                          val,
-                        ),
-                    maxValue: 300,
-                    minValue: 0,
-                    initialValue:
-                        Provider.of<Calculator>(context, listen: true).kg),
+                  direction: Axis.vertical,
+                  onValChanged: (val) => context.read<Calculator>().updateKg(
+                        val,
+                      ),
+                  maxValue: 300,
+                  minValue: 0,
+                  initialValue: context.select<Calculator, double>(
+                    (value) => value.kg,
+                  ),
+                ),
               ],
             ),
           ),
@@ -88,17 +88,15 @@ class MetricMeasurements extends StatelessWidget {
                 ),
                 CircularScrollWheel(
                   direction: Axis.vertical,
-                  initialValue: Provider.of<Calculator>(
-                    context,
-                    listen: true,
-                  ).centimeters,
+                  initialValue: context.select<Calculator, double>(
+                    (value) => value.centimeters,
+                  ),
                   minValue: 0,
                   maxValue: 300,
                   onValChanged: (val) =>
-                      Provider.of<Calculator>(context, listen: false)
-                          .updateCentimeters(
-                    val,
-                  ),
+                      context.read<Calculator>().updateCentimeters(
+                            val,
+                          ),
                 ),
               ],
             ),
@@ -134,14 +132,12 @@ class ImperialMeasurements extends StatelessWidget {
                 ),
                 CircularScrollWheel(
                   direction: Axis.vertical,
-                  initialValue: Provider.of<Calculator>(
-                    context,
-                    listen: true,
-                  ).lb,
-                  onValChanged: (val) =>
-                      Provider.of<Calculator>(context, listen: false).updateLB(
-                    val,
+                  initialValue: context.select<Calculator, double>(
+                    (value) => value.lb,
                   ),
+                  onValChanged: (val) => context.read<Calculator>().updateLB(
+                        val,
+                      ),
                   maxValue: 300,
                   minValue: 0,
                 ),
@@ -168,17 +164,15 @@ class ImperialMeasurements extends StatelessWidget {
                       ),
                       CircularScrollWheel(
                         direction: Axis.horizontal,
-                        initialValue: Provider.of<Calculator>(
-                          context,
-                          listen: true,
-                        ).feet,
+                        initialValue: context.select<Calculator, double>(
+                          (value) => value.feet,
+                        ),
                         minValue: 0,
                         maxValue: 12,
                         onValChanged: (val) =>
-                            Provider.of<Calculator>(context, listen: false)
-                                .updateFeet(
-                          val,
-                        ),
+                            context.read<Calculator>().updateFeet(
+                                  val,
+                                ),
                       ),
                     ],
                   ),
@@ -201,15 +195,12 @@ class ImperialMeasurements extends StatelessWidget {
                       CircularScrollWheel(
                         direction: Axis.horizontal,
                         maxValue: 11,
-                        initialValue: Provider.of<Calculator>(
-                          context,
-                          listen: true,
-                        ).inches,
+                        initialValue: context.select<Calculator, double>(
+                            (value) => value.inches),
                         onValChanged: (val) =>
-                            Provider.of<Calculator>(context, listen: false)
-                                .updateInches(
-                          val,
-                        ),
+                            context.read<Calculator>().updateInches(
+                                  val,
+                                ),
                         minValue: 0,
                       ),
                     ],

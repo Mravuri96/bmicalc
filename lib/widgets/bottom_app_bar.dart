@@ -24,7 +24,7 @@ import 'package:flutter/material.dart'
         Widget,
         showDialog;
 import 'package:hive/hive.dart' show Hive;
-import 'package:provider/provider.dart' show Provider;
+import 'package:provider/provider.dart';
 
 import '../models/user_data.dart' show UserData;
 import '../providers/calculator.dart' show Calculator;
@@ -37,21 +37,12 @@ class CalculateButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cal = Provider.of<Calculator>(
-      context,
-      listen: true,
-    );
+    final cal = context.watch<Calculator>();
     return InkWell(
       splashColor: cal.isMale ? Colors.lightBlueAccent : Colors.pinkAccent,
       onTap: () => cal.isMetric
-          ? Provider.of<Calculator>(
-              context,
-              listen: false,
-            ).calculateKgBmi()
-          : Provider.of<Calculator>(
-              context,
-              listen: false,
-            ).calculateLbBmi(),
+          ? context.read<Calculator>().calculateKgBmi()
+          : context.read<Calculator>().calculateLbBmi(),
       child: Card(
         child: FlatButton(
           shape: RoundedRectangleBorder(

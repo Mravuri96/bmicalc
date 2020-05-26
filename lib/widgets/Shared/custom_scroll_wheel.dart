@@ -15,7 +15,7 @@ import 'package:flutter/material.dart'
         TextStyle,
         Widget,
         required;
-import 'package:provider/provider.dart' show Provider;
+import 'package:provider/provider.dart';
 
 import '../../providers/calculator.dart' show Calculator;
 
@@ -53,7 +53,7 @@ class _CircularScrollWheelState extends State<CircularScrollWheel> {
 
   @override
   Widget build(BuildContext context) {
-    final _settings = Provider.of<Calculator>(context, listen: true);
+    final _isMale = context.select<Calculator, bool>((value) => value.isMale);
     return RotatedBox(
       quarterTurns: widget.direction == Axis.horizontal ? 3 : 0,
       child: ListWheelScrollView.useDelegate(
@@ -67,15 +67,13 @@ class _CircularScrollWheelState extends State<CircularScrollWheel> {
           widget.onValChanged(_currentPosition + widget.minValue);
         },
         childDelegate: ListWheelChildBuilderDelegate(
-          builder: (_, index) => RotatedBox(
+          builder: (context, index) => RotatedBox(
             quarterTurns: widget.direction == Axis.horizontal ? 1 : 0,
             child: Text(
-              '${widget.minValue + index}',
+              '${(widget.minValue + index).toInt()}',
               style: TextStyle(
                 color: index == _currentPosition
-                    ? _settings.isMale
-                        ? Colors.lightBlueAccent
-                        : Colors.pinkAccent
+                    ? _isMale ? Colors.lightBlueAccent : Colors.pinkAccent
                     : Colors.white,
               ),
             ),

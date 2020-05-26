@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:flutter/material.dart' show WidgetsFlutterBinding, runApp;
+import 'package:hive/hive.dart' show Hive;
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
-import 'models/user_data.dart';
-import 'providers/calculator.dart';
-import 'screens/home_page.dart';
+import 'models/user_data.dart' show UserData, UserDataAdapter;
+import 'providers/calculator.dart' show Calculator;
+import 'screens/home_page.dart' show HomePage;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,10 +16,6 @@ Future<void> main() async {
   await Hive.openBox<UserData>(
     'userdata',
   );
-  // await Hive.openBox(
-  //   'settings',
-  //   crashRecovery: true,
-  // );
   runApp(
     ChangeNotifierProvider(
       create: (_) => Calculator(),
