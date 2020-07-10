@@ -1,6 +1,6 @@
 {
-    "name": "BmiCalc",
-    "short_name": "BmiCalc",
+    "name": "bmicalc",
+    "short_name": "bmicalc",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
