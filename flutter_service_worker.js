@@ -3,17 +3,17 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "index.html": "616516b1e9f46c8563b0708a803a5188",
-"/": "616516b1e9f46c8563b0708a803a5188",
-"main.dart.js": "4b36651a76d57eb6c7c8d4eefb41f1b8",
+  "index.html": "9d529f9e773be303d82042acdeaea81b",
+"/": "9d529f9e773be303d82042acdeaea81b",
+"main.dart.js": "c38946bedc0627867dea014848f65697",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "manifest.json": "45e57552c4422b81692911a7af875c29",
 "assets/AssetManifest.json": "3a81fec7d849e801cd190243cc24d965",
-"assets/NOTICES": "bce2c9074148e9fedd72ad0fe106d07a",
-"assets/FontManifest.json": "94a2494f1e7ff74a7d0b6cf4f3d4e39d",
-"assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "4b9123f59422885f8f42d2d613f0bca3",
+"assets/NOTICES": "6089e36ac5d0a86386d5fd1b6b1bf412",
+"assets/FontManifest.json": "7aaf3996738086bbd796613e14ef9e45",
+"assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "115e937bb829a890521f72d2e664b632",
 "assets/packages/flutter_icons/fonts/Octicons.ttf": "73b8cff012825060b308d2162f31dbb2",
 "assets/packages/flutter_icons/fonts/Feather.ttf": "6beba7e6834963f7f171d3bdd075c915",
 "assets/packages/flutter_icons/fonts/Entypo.ttf": "744ce60078c17d86006dd0edabcd59a7",
@@ -30,7 +30,7 @@ const RESOURCES = {
 "assets/packages/flutter_icons/fonts/EvilIcons.ttf": "140c53a7643ea949007aa9a282153849",
 "assets/packages/flutter_icons/fonts/SimpleLineIcons.ttf": "d2285965fe34b05465047401b8595dd0",
 "assets/packages/flutter_icons/fonts/MaterialIcons.ttf": "a37b0c01c0baf1888ca812cc0508f6e2",
-"assets/fonts/MaterialIcons-Regular.ttf": "c5589b7205a16dc844ff989718416259"
+"assets/fonts/MaterialIcons-Regular.otf": "a68d2a28c526b3b070aefca4bac93d25"
 };
 
 // The application shell files that are downloaded before a service worker can
@@ -47,8 +47,8 @@ const CORE = [
 self.addEventListener("install", (event) => {
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
-      // Provide a no-cache param to ensure the latest version is downloaded.
-      return cache.addAll(CORE.map((value) => new Request(value, {'cache': 'no-cache'})));
+      return cache.addAll(
+        CORE.map((value) => new Request(value + '?revision=' + RESOURCES[value], {'cache': 'reload'})));
     })
   );
 });
@@ -131,7 +131,7 @@ self.addEventListener("fetch", (event) => {
         // Either respond with the cached resource, or perform a fetch and
         // lazily populate the cache. Ensure the resources are not cached
         // by the browser for longer than the service worker expects.
-        var modifiedRequest = new Request(event.request, {'cache': 'no-cache'});
+        var modifiedRequest = new Request(event.request, {'cache': 'reload'});
         return response || fetch(modifiedRequest).then((response) => {
           cache.put(event.request, response.clone());
           return response;
