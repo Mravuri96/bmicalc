@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png"/>
 
   <title>BmiCalc</title>
   <link rel="manifest" href="manifest.json">
@@ -22,68 +22,12 @@
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
-      function _beginServiceWorkerUpdateFlow(registration) {
-        // TODO implement your own UI notification element
-        if (
-          window.confirm("New version of the app is available. Refresh now?") &&
-          registration.waiting
-        ) {
-          // let waiting Service Worker know it should became active
-          registration.waiting.postMessage("skipWaiting");
-        }
-      }
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
-          navigator.serviceWorker.register("flutter_service_worker.js").then(
-            function (registration) {
-              if (registration.waiting) {
-                _beginServiceWorkerUpdateFlow(registration);
-              }
-
-              // detect Service Worker update available and wait for it to become installed
-              registration.addEventListener("updatefound", () => {
-                if (registration.installing) {
-                  // wait until the new Service worker is actually installed (ready to take over)
-                  registration.installing.addEventListener(
-                    "statechange",
-                    () => {
-                      if (registration.waiting) {
-                        // if there's an existing controller (previous Service Worker), show the prompt
-                        if (navigator.serviceWorker.controller) {
-                          _beginServiceWorkerUpdateFlow(registration);
-                        } else {
-                          // otherwise it's the first install, nothing to do
-                          console.log(
-                            "Service Worker initialized for the first time"
-                          );
-                        }
-                      }
-                    }
-                  );
-                }
-              });
-
-              let refreshing = false;
-
-              // detect controller change and refresh the page
-              navigator.serviceWorker.addEventListener(
-                "controllerchange",
-                () => {
-                  if (!refreshing) {
-                    window.location.reload(true);
-                    refreshing = true;
-                  }
-                }
-              );
-            },
-            function (err) {
-              // registration failed :(
-              console.log("ServiceWorker registration failed: ", err);
-            }
-          );
-        });
-      }
-    </script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=2166961723');
+      });
+    }
+  </script>
   <script src="main.dart.js" type="application/javascript"></script>
 </body>
 </html>
