@@ -9,17 +9,17 @@ import 'package:flutter/material.dart'
         Colors,
         Column,
         Divider,
-        FlatButton,
+        ElevatedButton,
         InkWell,
         Key,
         ListTile,
         MaterialPageRoute,
         Navigator,
-        RaisedButton,
         RoundedRectangleBorder,
         SingleChildScrollView,
         StatelessWidget,
         Text,
+        TextButton,
         TextStyle,
         Widget,
         showDialog;
@@ -32,7 +32,7 @@ import '../screens/records.dart' show Records;
 
 class CalculateButton extends StatelessWidget {
   const CalculateButton({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -44,11 +44,13 @@ class CalculateButton extends StatelessWidget {
           ? context.read<Calculator>().calculateKgBmi()
           : context.read<Calculator>().calculateLbBmi(),
       child: Card(
-        child: FlatButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4),
+        child: TextButton(
+          style: ElevatedButton.styleFrom(
+            primary: const Color(0xFF1D1F33),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
           ),
-          color: const Color(0xFF1D2033),
           onPressed: () => showDialog(
             context: context,
             builder: (context) => AlertDialog(
@@ -165,8 +167,10 @@ class CalculateButton extends StatelessWidget {
                 ),
               ),
               actions: <Widget>[
-                RaisedButton(
-                  color: const Color(0xFF1D1F33),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xFF1D1F33),
+                  ),
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -174,11 +178,14 @@ class CalculateButton extends StatelessWidget {
                     'Cancel',
                     style: TextStyle(
                       fontFamily: 'Raleway',
+                      color: Colors.white,
                     ),
                   ),
                 ),
-                RaisedButton(
-                  color: const Color(0xFF1D1F33),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xFF1D1F33),
+                  ),
                   onPressed: () async {
                     final _recordedTime = DateTime.now();
                     await Hive.box<UserData>('userdata').add(
@@ -222,6 +229,7 @@ class CalculateButton extends StatelessWidget {
                     'Save',
                     style: TextStyle(
                       fontFamily: 'Raleway',
+                      color: Colors.white,
                     ),
                   ),
                 ),

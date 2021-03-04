@@ -17,13 +17,14 @@ import 'package:flutter/material.dart'
         Text,
         TextStyle,
         Widget;
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart' show MaterialCommunityIcons;
 
 import '../screens/records.dart' show Records;
 
 class CustomSliverAppBar extends StatelessWidget {
   const CustomSliverAppBar({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

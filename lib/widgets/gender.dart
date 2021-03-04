@@ -7,18 +7,19 @@ import 'package:flutter/material.dart'
         Colors,
         Column,
         EdgeInsets,
+        ElevatedButton,
         Expanded,
         Icon,
         Key,
         MainAxisAlignment,
         Padding,
-        RaisedButton,
         RoundedRectangleBorder,
         Row,
         StatelessWidget,
         Text,
         TextStyle,
         Widget;
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart' show FontAwesome5Solid;
 import 'package:provider/provider.dart';
 
@@ -26,7 +27,7 @@ import '../providers/calculator.dart' show Calculator;
 
 class GenderRow extends StatelessWidget {
   const GenderRow({
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -35,15 +36,17 @@ class GenderRow extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: Card(
-            child: RaisedButton(
-              splashColor: Colors.lightBlueAccent,
-              color: const Color(0xFF1D2033),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: const Color(0xFF1D1F33),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                onSurface: Colors.lightBlueAccent,
+              ),
               onPressed: () {
                 _settings.updateIsMale(x: true);
               },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
               child: Padding(
                 padding: const EdgeInsets.all(32),
                 child: Column(
@@ -70,15 +73,17 @@ class GenderRow extends StatelessWidget {
         ),
         Expanded(
           child: Card(
-            child: RaisedButton(
-              splashColor: Colors.pinkAccent,
-              color: const Color(0xFF1D2033),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: const Color(0xFF1D1F33),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                onSurface: Colors.lightBlueAccent,
+              ),
               onPressed: () {
                 _settings.updateIsMale(x: false);
               },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
               child: Padding(
                 padding: const EdgeInsets.all(32),
                 child: Column(

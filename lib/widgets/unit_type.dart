@@ -11,13 +11,14 @@ import 'package:flutter/material.dart'
         TextStyle,
         ToggleButtons,
         Widget;
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart' show MaterialCommunityIcons;
 import 'package:provider/provider.dart';
 
 import '../providers/calculator.dart' show Calculator;
 
 class UnitTypeSelector extends StatelessWidget {
-  const UnitTypeSelector({Key key}) : super(key: key);
+  const UnitTypeSelector({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class UnitTypeSelector extends StatelessWidget {
 }
 
 class WeightSelector extends StatelessWidget {
-  const WeightSelector({Key key}) : super(key: key);
+  const WeightSelector({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

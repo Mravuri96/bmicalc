@@ -51,12 +51,12 @@ class Calculator extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateIsMale({bool x}) {
+  void updateIsMale({required bool x}) {
     _isMale = x;
     notifyListeners();
   }
 
-  void updateIsMetric({bool x}) {
+  void updateIsMetric({required bool x}) {
     _isMetric = x;
     notifyListeners();
   }

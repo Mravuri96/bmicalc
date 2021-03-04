@@ -23,7 +23,7 @@ import 'Shared/custom_scroll_wheel.dart' show CircularScrollWheel;
 
 class HeightWeight extends StatelessWidget {
   const HeightWeight({
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class HeightWeight extends StatelessWidget {
 
 class MetricMeasurements extends StatelessWidget {
   const MetricMeasurements({
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -109,7 +109,7 @@ class MetricMeasurements extends StatelessWidget {
 
 class ImperialMeasurements extends StatelessWidget {
   const ImperialMeasurements({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

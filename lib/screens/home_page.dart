@@ -16,7 +16,6 @@ import 'package:flutter/material.dart'
         SizedBox,
         StatelessWidget,
         ThemeData,
-        ThemeMode,
         ToggleButtonsThemeData,
         VisualDensity,
         Widget;
@@ -28,11 +27,10 @@ import '../widgets/height_weight.dart' show HeightWeight;
 import '../widgets/unit_type.dart' show UnitTypeSelector;
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        themeMode: ThemeMode.system,
         theme: ThemeData(
           primarySwatch: Colors.lightBlue,
           cardColor: const Color(0xFF1D2033),
@@ -50,7 +48,7 @@ class HomePage extends StatelessWidget {
 }
 
 class HomePageContent extends StatelessWidget {
-  const HomePageContent({Key key}) : super(key: key);
+  const HomePageContent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

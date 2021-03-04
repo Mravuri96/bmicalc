@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart'
     show
         Axis,
@@ -13,20 +14,20 @@ import 'package:flutter/material.dart'
         StatefulWidget,
         Text,
         TextStyle,
-        Widget,
-        required;
+        Widget;
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/calculator.dart' show Calculator;
 
 class CircularScrollWheel extends StatefulWidget {
   const CircularScrollWheel({
-    @required this.direction,
-    @required this.minValue,
-    @required this.maxValue,
-    @required this.onValChanged,
-    @required this.initialValue,
-    Key key,
+    required this.direction,
+    required this.minValue,
+    required this.maxValue,
+    required this.onValChanged,
+    required this.initialValue,
+    Key? key,
   }) : super(key: key);
 
   final Axis direction;
@@ -35,12 +36,25 @@ class CircularScrollWheel extends StatefulWidget {
   @override
   _CircularScrollWheelState createState() => _CircularScrollWheelState();
 
+  // ignore: avoid_annotating_with_dynamic
   final Function(dynamic) onValChanged;
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DoubleProperty('minValue', minValue))
+      ..add(EnumProperty<Axis>('direction', direction))
+      // ignore: avoid_annotating_with_dynamic
+      ..add(ObjectFlagProperty<Function(dynamic)>.has(
+          'onValChanged', onValChanged))
+      ..add(DoubleProperty('initialValue', initialValue))
+      ..add(DoubleProperty('maxValue', maxValue));
+  }
 }
 
 class _CircularScrollWheelState extends State<CircularScrollWheel> {
-  double _currentPosition;
-  FixedExtentScrollController _fixedExtentScrollController;
+  late double _currentPosition;
+  late FixedExtentScrollController _fixedExtentScrollController;
 
   @override
   void initState() {
@@ -73,7 +87,9 @@ class _CircularScrollWheelState extends State<CircularScrollWheel> {
               '${(widget.minValue + index).toInt()}',
               style: TextStyle(
                 color: index == _currentPosition
-                    ? _isMale ? Colors.lightBlueAccent : Colors.pinkAccent
+                    ? _isMale
+                        ? Colors.lightBlueAccent
+                        : Colors.pinkAccent
                     : Colors.white,
               ),
             ),

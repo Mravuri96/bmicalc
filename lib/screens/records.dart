@@ -15,6 +15,7 @@ import 'package:flutter/material.dart'
         Container,
         Dismissible,
         EdgeInsets,
+        ElevatedButton,
         ExpansionTile,
         Icon,
         IconButton,
@@ -24,20 +25,20 @@ import 'package:flutter/material.dart'
         ListView,
         Navigator,
         Padding,
-        RaisedButton,
         Scaffold,
         Scrollbar,
         Shadow,
         StatelessWidget,
         Text,
         TextStyle,
-        Theme,
         ValueKey,
         ValueListenableBuilder,
         Widget,
         showDialog;
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart'
     show FontAwesome5Solid, MaterialCommunityIcons;
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart'
     show
         AnimationConfiguration,
@@ -52,7 +53,7 @@ import 'package:intl/intl.dart' show DateFormat;
 import '../models/user_data.dart' show UserData;
 
 class Records extends StatelessWidget {
-  const Records({Key key}) : super(key: key);
+  const Records({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -90,17 +91,25 @@ class Records extends StatelessWidget {
                       ),
                     ),
                     actions: <Widget>[
-                      RaisedButton(
-                        color: Theme.of(context).cardColor,
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color(0xFF1D1F33),
+                        ),
                         onPressed: () {
                           Navigator.pop(context);
                         },
                         child: const Text(
                           'Cancel',
+                          style: TextStyle(
+                            fontFamily: 'Raleway',
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                      RaisedButton(
-                        color: Theme.of(context).cardColor,
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color(0xFF1D1F33),
+                        ),
                         onPressed: () async {
                           await Hive.box<UserData>('userdata').clear();
                           // await _bannerAd?.dispose();
@@ -110,6 +119,10 @@ class Records extends StatelessWidget {
                         },
                         child: const Text(
                           'Confirm',
+                          style: TextStyle(
+                            fontFamily: 'Raleway',
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
@@ -147,8 +160,6 @@ class Records extends StatelessWidget {
                             child: ListView.builder(
                               physics: const BouncingScrollPhysics(),
                               shrinkWrap: true,
-                              addAutomaticKeepAlives: true,
-                              addRepaintBoundaries: true,
                               itemCount: value.length,
                               itemBuilder: (context, index) =>
                                   AnimationConfiguration.staggeredList(
@@ -190,7 +201,7 @@ class Records extends StatelessWidget {
                                           ),
                                         ),
                                         key: ValueKey(
-                                            value.getAt(index).dateRecorded),
+                                            value.getAt(index)!.dateRecorded),
                                         onDismissed: (direction) {
                                           // snapshot.data;
                                           Hive.box<UserData>('userdata')
@@ -198,14 +209,14 @@ class Records extends StatelessWidget {
                                         },
                                         child: Card(
                                           color: Color(
-                                            value.getAt(index).colorValue,
+                                            value.getAt(index)!.colorValue,
                                           ),
                                           child: ExpansionTile(
                                             initiallyExpanded:
                                                 index == value.length - 1,
                                             title: Text(
                                               value
-                                                  .getAt(index)
+                                                  .getAt(index)!
                                                   .bmi
                                                   .toString()
                                                   .substring(0, 5),
@@ -222,7 +233,7 @@ class Records extends StatelessWidget {
                                               ListTile(
                                                 leading: Icon(
                                                   value
-                                                              .getAt(index)
+                                                              .getAt(index)!
                                                               .colorValue ==
                                                           Colors.lightBlueAccent
                                                               .value
@@ -232,7 +243,7 @@ class Records extends StatelessWidget {
                                                 ),
                                                 title: const Text('Gender'),
                                                 trailing: Text(value
-                                                            .getAt(index)
+                                                            .getAt(index)!
                                                             .colorValue ==
                                                         Colors.lightBlueAccent
                                                             .value
@@ -247,7 +258,7 @@ class Records extends StatelessWidget {
                                                 ),
                                                 title: const Text('Height'),
                                                 trailing: Text(
-                                                    value.getAt(index).height),
+                                                    value.getAt(index)!.height),
                                               ),
                                               ListTile(
                                                 leading: const Icon(
@@ -257,7 +268,7 @@ class Records extends StatelessWidget {
                                                 ),
                                                 title: const Text('Weight'),
                                                 trailing: Text(
-                                                    value.getAt(index).weight),
+                                                    value.getAt(index)!.weight),
                                               ),
                                               ListTile(
                                                 leading: const Icon(
@@ -269,7 +280,7 @@ class Records extends StatelessWidget {
                                                 trailing: Text(
                                                     DateFormat.yMMMd().format(
                                                         value
-                                                            .getAt(index)
+                                                            .getAt(index)!
                                                             .dateRecorded)),
                                               ),
                                             ],

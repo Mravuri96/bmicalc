@@ -8,13 +8,13 @@ part of 'user_data.dart';
 
 class UserDataAdapter extends TypeAdapter<UserData> {
   @override
-  final typeId = 0;
+  final int typeId = 0;
 
   @override
   UserData read(BinaryReader reader) {
-    var numOfFields = reader.readByte();
-    var fields = <int, dynamic>{
-      for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return UserData(
       bmi: fields[0] as double,
@@ -40,4 +40,14 @@ class UserDataAdapter extends TypeAdapter<UserData> {
       ..writeByte(4)
       ..write(obj.dateRecorded);
   }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserDataAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
 }
