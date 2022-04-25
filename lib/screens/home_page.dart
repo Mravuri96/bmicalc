@@ -32,10 +32,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         theme: ThemeData(
+          useMaterial3: true,
           primarySwatch: Colors.lightBlue,
           cardColor: const Color(0xFF1D2033),
           appBarTheme: const AppBarTheme(
-            color: Color(0xFF0A0c21),
+            color: Color(0xFF1D2033),
           ),
           toggleButtonsTheme: const ToggleButtonsThemeData(
             color: Colors.white,
@@ -62,14 +63,14 @@ class HomePageContent extends StatelessWidget {
               minWidth: 350,
             ),
             child: Column(
-              children: const <Widget>[
-                CustomSliverAppBar(),
-                GenderRow(),
-                UnitTypeSelector(),
+              children: <Widget>[
+                const CustomSliverAppBar(),
+                const GenderRow(),
+                const UnitTypeSelector(),
                 Expanded(
-                  child: HeightWeight(),
+                  child: const HeightWeight(),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 64,
                   width: 760,
                   child: CalculateButton(),

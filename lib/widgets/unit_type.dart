@@ -12,7 +12,7 @@ import 'package:flutter/material.dart'
         ToggleButtons,
         Widget;
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:flutter_icons/flutter_icons.dart' show MaterialCommunityIcons;
+import 'package:flutter_font_icons/flutter_font_icons.dart' show MaterialCommunityIcons;
 import 'package:provider/provider.dart';
 
 import '../providers/calculator.dart' show Calculator;

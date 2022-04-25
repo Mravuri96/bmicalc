@@ -18,7 +18,7 @@ import 'package:flutter/material.dart'
         TextStyle,
         Widget;
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:flutter_icons/flutter_icons.dart' show MaterialCommunityIcons;
+import 'package:flutter_font_icons/flutter_font_icons.dart' show MaterialCommunityIcons;
 
 import '../screens/records.dart' show Records;
 
@@ -39,7 +39,7 @@ class CustomSliverAppBar extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
         ),
-        backgroundColor: const Color(0xFF1D2033),
+        // backgroundColor: const Color(0xFF1D2033),
         title: const Text(
           'BMI CALCULATOR',
           style: TextStyle(

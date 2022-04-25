@@ -36,7 +36,7 @@ import 'package:flutter/material.dart'
         Widget,
         showDialog;
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:flutter_icons/flutter_icons.dart'
+import 'package:flutter_font_icons/flutter_font_icons.dart'
     show FontAwesome5Solid, MaterialCommunityIcons;
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart'

@@ -65,7 +65,7 @@ jobs:
         working-directory: code
         run: |
           rm -rf build
-          flutter build web --release --dart-define=FLUTTER_WEB_USE_SKIA=false --dart-define=FLUTTER_WEB_ENABLE_PROFILING=false --dart-define=FLUTTER_WEB_USE_EXPERIMENTAL_CANVAS_TEXT=false --csp --tree-shake-icons -v
+          flutter build web --base-href="/bmicalc/" --release --csp --no-tree-shake-icons -v
           cd build/web
           git init
           git config --global user.email mravuri96@gmail.com
@@ -79,12 +79,12 @@ jobs:
 
 
       - name: Build Windows Version
-        run: flutter build windows --tree-shake-icons -v
+        run: flutter build windows --no-tree-shake-icons -v
         if: runner.os == 'Windows'
         working-directory: code
 
       - name: Build MacOS Version
-        run: flutter build macos --split-debug-info --obfuscate --tree-shake-icons -v
+        run: flutter build macos --split-debug-info --obfuscate --no-tree-shake-icons -v
         if: runner.os == 'macOS'
         working-directory: code
         continue-on-error: true
@@ -98,7 +98,7 @@ jobs:
           path: code/build/macos/Build/Products/Release/BmiCalc.app
 
       - name: Build iPhone / iPad app
-        run: flutter build ios --simulator --no-codesign --split-debug-info --obfuscate --tree-shake-icons -v
+        run: flutter build ios --simulator --no-codesign --split-debug-info --obfuscate --no-tree-shake-icons -v
         working-directory: code
         if: runner.os == 'macOS'
         continue-on-error: true
@@ -113,7 +113,7 @@ jobs:
 
 
       - name: Build Linux Version
-        run: flutter build linux --tree-shake-icons -v
+        run: flutter build linux --no-tree-shake-icons -v
         if: runner.os == 'Linux'
         working-directory: code
         continue-on-error: true
@@ -129,7 +129,7 @@ jobs:
 
       - name: Android app
         if: runner.os == 'Windows'
-        run: flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --obfuscate --split-debug-info --tree-shake-icons -v
+        run: flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --obfuscate --split-debug-info --no-tree-shake-icons -v
         working-directory: code
       - name: Upload Apks
         if: runner.os == 'Windows'
